@@ -1,10 +1,11 @@
 export function checkEmail(email){
-    let regex = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\.[a-z0-9._-]+[a-zA-Z]{2,3}")
+    //let regex = new RegExp("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/")
+    let regex = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\.[a-zA-Z]{2,3}$")
     return regex.test(email);
 }
 
 export function checkTextField(text){
-    return (text.length > 2)
+    return (text.length > 1)
 }
 
 export function checkQuantity(quantity){

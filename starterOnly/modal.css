@@ -531,7 +531,22 @@ footer {
   display : none;
 }
 
-.visible{
+.error{
   color:red;
-  display: block;
+  font-size: 0.5em;
+  font-weight: 100;
 }
+
+.alerte-border{
+  border: 2px solid #f00 ;
+  border-radius: 15px;
+}
+
+.validate{
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  padding: 50% 0;
+}
+

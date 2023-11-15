@@ -93,7 +93,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "wp": "webpack --watch"
   },
   "keywords": [],
   "author": "",
