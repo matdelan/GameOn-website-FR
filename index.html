@@ -23,7 +23,7 @@
       <a href="#"><span>À propos</span></a>
       <a href="#"><span>Contact</span></a>
       <a href="#"><span>Évènements passés</span></a>
-      <a href="javascript:void(0);" class="icon" onclick="editNav()">
+      <a href="#" class="icon" id="menu">
         <i class="fa fa-bars"></i>
       </a>
     </div>
@@ -62,7 +62,7 @@
               method="get"
               onsubmit=""
             ><!--return validate();-->
-              <div class="formData">
+              <div class="formData" data-error="" data-error-visible="false">
                 <label>Prénom</label><br>
                 <input
                   class="text-control"
@@ -71,10 +71,8 @@
                   name="first"
                   minlength="2"
                 /><br>
-                <div class="invisible error">Veuillez entrer 2 caractères ou plus.</div>
               </div>
-              <div
-                class="formData">
+              <div class="formData" data-error="" data-error-visible="false">
                 <label>Nom</label><br>
                 <input
                   class="text-control"
@@ -82,10 +80,8 @@
                   id="last"
                   name="last"
                 /><br>
-                <div class="error invisible">Veuillez entrer 2 caractères ou plus.</div>
               </div>
-              <div
-                class="formData">
+              <div class="formData" data-error="" data-error-visible="false">
                 <label>E-mail</label><br>
                 <input
                   class="text-control"
@@ -93,10 +89,8 @@
                   id="email"
                   name="email"
                 /><br>
-                <div class="error invisible">Veuillez entrer un mail valide</div>
               </div>
-              <div
-                class="formData">
+              <div class="formData" data-error="" data-error-visible="false">
                 <label>Date de naissance</label><br>
                 <input
                   class="text-control"
@@ -104,24 +98,21 @@
                   id="birthdate"
                   name="birthdate"
                 /><br>
-                <div class="error invisible">Vous devez avoir entre 18 et 80 ans pour vous inscrire</div>
               </div>
-              <div
-                class="formData">
+              <div class="formData" data-error="" data-error-visible="false">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
-                <div class="error invisible">Veuillez entrer 1 quantité</div>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
-              <div class="formData formRadio" id="formRadio">
+              <div class="formData" data-error="" data-error-visible="false" id="formRadio">
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input" 
                   type="radio"
                   id="location1"
                   name="location"
                   value="New York"
                 />
-                <label class="checkbox-label" for="location1">
+                <label class="checkbox-label formRadio" for="location1">
                   <span class="checkbox-icon"></span>
                   New York</label
                 >
@@ -180,17 +171,17 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 >
-                <div class="error invisible">Vous devez choisir une option.</div>
               </div>
               
-              <div class="formData">
+              <div class="formData" data-error="" data-error-visible="false">
                 <input class="checkbox-input" type="checkbox" id="checkbox1" checked/>
                 <label class="checkbox2-label 1" for="checkbox1" required>
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
                 <br>
-                <div class="error invisible">Vous devez acceptez les conditions d'utilisation.</div>
+              </div>
+              <div class="anomalie">
                 <input class="checkbox-input" 
                   type="checkbox" 
                   id="checkbox2" 
@@ -208,6 +199,9 @@
                 value="C'est parti"
               />
             </form>
+            <div class="invisible validationForm">
+              <div class="validationForm__text">Merci pour <br>votre inscription</div> <button id="fermer" class="validationForm__btn btn-submit button">Fermer</button>
+            </div>
           </div>
         </div>
       </div>
