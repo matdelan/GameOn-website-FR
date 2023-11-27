@@ -1,5 +1,5 @@
  /*************** DECLARATION****** */
-//Functions
+//IMPORT de functions
 let log = require('../assets/js/utility/log')
 import * as modal from '../assets/js/utility/modal'
 import { checkEmail, checkRadio, checkTextField, checkQuantity , checkBirthdate, manageAlert,validateForm } from '../assets/js/validator/form-registration'
@@ -8,31 +8,38 @@ import { editNav } from '../assets/js/utility/nav'
 
 // DOM Elements
 const modalBtn = document.querySelectorAll(".modal-btn")
-const modalBody = document.querySelector(".modal-body")
 const modalcloseBtn = document.querySelector(".close")
-const modalclose = document.querySelector(".validationForm")
-const formData = document.querySelectorAll(".formData")
+const modalclose = document.querySelector(".validationForm__btn")
 const form = document.querySelector("form")
+const modalForm = document.querySelector(".bground")
 const first = document.getElementById("first")
 const last = document.getElementById("last")
 const email = document.getElementById("email")
 const birthdate = document.getElementById("birthdate")
 const quantity = document.getElementById("quantity")
 const checkbox1 = document.getElementById("checkbox1")
-const checkbox2 = document.getElementById("checkbox2")
-//const formRadio = document.querySelectorAll(".checkbox-input")
 const formRadio = document.getElementById("formRadio")
-const fermer = document.getElementById("fermer")
-const menu = document.getElementById("menu")
+const nav = document.getElementById("nav")
 
 
-//Modal events
+/********* EVENTS *************/
+
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", modal.launchModal))
+modalBtn.forEach((btn) => btn.addEventListener("click", function(){
+    modal.launchModal(modalForm)
+}))
 // close modal event
-modalcloseBtn.addEventListener("click", modal.closeModal)
-modalclose.addEventListener("click", modal.closeModal)
-//focusout first
+modalcloseBtn.addEventListener("click", function(){
+    modal.closeModal(modalForm)
+})
+modalclose.addEventListener("click", function(){
+    modal.closeModal(modalForm)
+})
+body.addEventListener('click', function() {
+    modal.closeModal(modalForm)
+})
+
+// INPUT -- VALIDATION
 first.addEventListener("focusout", function(){
     manageAlert(first, checkTextField(first.value))
 })
@@ -55,8 +62,8 @@ formRadio.addEventListener("change", function(){
     manageAlert(formRadio, checkRadio(formRadio))
 })
 
-//log(menu + menu.tagName)
-menu.addEventListener("click", function(){
+//Menu en résolution mobile
+nav.addEventListener("click", function(){
     editNav()
 })
 

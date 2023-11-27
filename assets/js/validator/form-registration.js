@@ -1,8 +1,8 @@
+/**** LES  TESTS ****/
 export function checkEmail(email){
-    //let regex = new RegExp("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/")
+    //let regex = new RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
     let regex = new RegExp (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
     return regex.test(email)
-
 }
 
 export function checkTextField(text){
@@ -19,15 +19,17 @@ export function checkQuantity(quantity){
     return false
 }
 
+//Test si au moins 1 checkbox est cochée
 export function checkRadio(element){
     let radio = false
     
     //loop for radio button
     for(let i=0;i<(element.childElementCount);i++)
     {
-      //console.log(element.children[i].tagName)
+      //Si un enfant de formRadio est un input
       if(element.children[i].tagName == 'INPUT')
       {
+        // Si la radio est checked
         if(element.children[i].checked)
         {
           radio = true;
@@ -35,7 +37,7 @@ export function checkRadio(element){
         }
       }
     }
-    console.log("radio : " + radio)
+    
     return radio
 }
 
@@ -44,10 +46,13 @@ export function checkBirthdate(date){
     if(date !== null)
     {
         let dateBirthday = new Date(date)
+        // On initialise deux dates
         let dateMin = new Date()
         let dateMax = new Date()
+        //On leurs affectent l'age min & max
         dateMin.setFullYear(dateMin.getFullYear() - 18)
         dateMax.setFullYear(dateMin.getFullYear() - 80)
+
         if((dateBirthday < dateMin) && (dateBirthday > dateMax))
             return true
     }
@@ -55,6 +60,7 @@ export function checkBirthdate(date){
     return false
 }
 
+/** TEST GLOBAL ***/
 function manageAlertList(){
     manageAlert(first, checkTextField(first.value))
     manageAlert(last,checkTextField(last.value))
@@ -65,8 +71,10 @@ function manageAlertList(){
     manageAlert(birthdate, checkBirthdate(birthdate.value))
 }
 
+//Affiche les messages d'erreus en fonction des champs : input id / booleen champs conforme
 export function manageAlert(element, bool){
-  let msg
+  //Gestion du message d'erreur
+  let msg = ""
   switch(element.id){
     case 'last' :
     case 'first' :
@@ -83,24 +91,22 @@ export function manageAlert(element, bool){
       break
     case 'checkbox1' :
       msg="Vous devez acceptez les conditions d'utilisation."
-      //element = element.firstElementChild
       break
     case 'formRadio' :
       msg="Vous devez choisir une option."
-      //element = element.firstElementChild
       break
     }
-    let target
+
+    let target = element.parentElement
+    //Exeception
     if(element.id == 'formRadio'){
       target = element
     }
-    else
-    {
-      target = element.parentElement
-    }
+
+    //Gestion d'affichage des messages d'erreurs
     if (bool){
-      //si l'alerte est est visible
-      if (target.attributes[1].value !== ""){
+      //si l'alerte est est visible //attributes[1].value !== ""
+      if (target.getAttribute("data-error-visible")){
         //on l'enlève
         target.setAttribute("data-error", "")
         target.setAttribute("data-error-visible", "false")
@@ -113,8 +119,13 @@ export function manageAlert(element, bool){
         target.setAttribute("data-error-visible", "true")
       }
     }
-  
+  //a condition que l'attibut data-error soit en deuxième position au niveau des classes
 }
+function dataLog(bool)
+{
+  this.bool = bool
+}
+
 
 export function validateForm(form){
         
@@ -127,23 +138,22 @@ export function validateForm(form){
       && checkRadio(formRadio)
       )
     {
-        //Validation du formulaire
-        console.log("Check Ok")
-        
+        //Validation du formulaire      
         form.classList.toggle("invisible")
         form.nextElementSibling.classList.toggle("invisible")
-        //modalBody.innerHTML='<div class="validate">Merci pour <br>votre inscription</div> <button id="fermer" class="btn-submit button">Fermer</button>'
-
     }
     else
     {
-      console.log("Erreur de validation : firt /" + checkTextField(first.value) 
-            + "/ last /" + checkTextField(last.value) 
-            + "/ Quantity /" + checkQuantity(quantity.value) 
-            + "/ email /" + checkEmail(email.value)
-            + "/ birthdate /" + checkBirthdate(birthdate.value)
-            + "/ Radio /" + checkRadio((formRadio))
-      )
+      let table = {}
+      table.first = new dataLog(checkTextField(first.value))
+      table.last = new dataLog(checkTextField(last.value))
+      table.quantity = new dataLog(checkQuantity(quantity.value))
+      table.email = new dataLog(checkEmail(email.value))
+      table.birthdate = new dataLog(checkBirthdate(birthdate.value))
+      table.radio = new dataLog(checkRadio(formRadio))
+      table.condition = new dataLog(checkbox1.checked)
+
+      console.table(table)
       //On affiche les erreurs    
       manageAlertList()
     }

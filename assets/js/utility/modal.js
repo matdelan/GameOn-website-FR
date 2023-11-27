@@ -1,12 +1,10 @@
 
-const modalbg = document.querySelector(".bground")
-
 // launch modal form
-export function launchModal() {
+export function launchModal(modalbg) {
     modalbg.style.display = "block"
 }
 
 // close modal form
-export function closeModal() {
+export function closeModal(modalbg) {
     modalbg.style.display = "none"
 }

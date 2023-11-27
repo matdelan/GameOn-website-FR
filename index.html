@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>Reservation</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="./assets/img/logo_mini.ico" type="image/x-icon">
     <link rel="stylesheet" href="modal.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link
@@ -23,7 +24,7 @@
       <a href="#"><span>À propos</span></a>
       <a href="#"><span>Contact</span></a>
       <a href="#"><span>Évènements passés</span></a>
-      <a href="#" class="icon" id="menu">
+      <a href="#" class="icon" id="nav">
         <i class="fa fa-bars"></i>
       </a>
     </div>
@@ -60,8 +61,7 @@
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit=""
-            ><!--return validate();-->
+            >
               <div class="formData" data-error="" data-error-visible="false">
                 <label>Prénom</label><br>
                 <input
@@ -114,8 +114,7 @@
                 />
                 <label class="checkbox-label formRadio" for="location1">
                   <span class="checkbox-icon"></span>
-                  New York</label
-                >
+                  New York</label>
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -200,7 +199,7 @@
               />
             </form>
             <div class="invisible validationForm">
-              <div class="validationForm__text">Merci pour <br>votre inscription</div> <button id="fermer" class="validationForm__btn btn-submit button">Fermer</button>
+              <div class="validationForm__text">Merci pour <br>votre inscription</div> <button class="validationForm__btn btn-submit button">Fermer</button>
             </div>
           </div>
         </div>
