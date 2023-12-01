@@ -35,9 +35,6 @@ modalcloseBtn.addEventListener("click", function(){
 modalclose.addEventListener("click", function(){
     modal.closeModal(modalForm)
 })
-body.addEventListener('click', function() {
-    modal.closeModal(modalForm)
-})
 
 // INPUT -- VALIDATION
 first.addEventListener("focusout", function(){
